@@ -34,16 +34,18 @@
 				    <div class="uk-margin">
 				        <label class="uk-form-label" for="form-horizontal-text">Email</label>
 				        <div class="uk-form-controls">
-				            <input class="uk-input" id="form-horizontal-text" type="email" required="required" placeholder="Your Email">
+				            <input class="uk-input" id="form-horizontal-text1" type="email" required="required" placeholder="Your Email">
 				        </div>
 				    </div>
 
 				    <div class="uk-margin">
 				        <label class="uk-form-label" for="form-horizontal-text">Password</label>
 				        <div class="uk-form-controls">
-				            <input class="uk-input" id="form-horizontal-text" type="password" required="required" placeholder="Your Password">
+				            <input class="uk-input" id="form-horizontal-text2" type="password" required="required" placeholder="Your Password">
 				        </div>
 				    </div>
+
+				    <div class="uk-margin uk-alert uk-alert-danger js-error" style="display:none;"></div>
 
 				    <div class="uk-margin">
 				        <button class="uk-button uk-button-default" type="submit">Register</button>
