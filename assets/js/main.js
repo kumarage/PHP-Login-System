@@ -36,10 +36,15 @@ $(document)
 	})
 	.done(function ajaxDone(data) {
 		// whatever data is
-		if(data.redirect !== undefined){
-			//console.log('aaa');	
+		console.log(data);
+		if(data.redirect !== undefined){	
 			window.location.href = data.redirect;
+		} else if (data.error !== undefined){
+			_error
+			.text(data.error)
+			.show();
 		}
+
 		alert(data.name);
 	})
 	.fail(function ajaxFailed(e) {
