@@ -45,7 +45,6 @@ $(document)
 			.show();
 		}
 
-		alert(data.name);
 	})
 	.fail(function ajaxFailed(e) {
 		// This failed
@@ -59,6 +58,7 @@ $(document)
 	return false;
 })
 //for login file
+$(document)
 .on("submit", "form.js-login", function(event){
 	//below code prevents us from taking out of the page
 	event.preventDefault(); 
@@ -96,18 +96,18 @@ $(document)
 	})
 	.done(function ajaxDone(data) {
 		// whatever data is
-		console.log(data);
+		
 		if(data.redirect !== undefined){	
 			window.location.href = data.redirect;
 		} else if (data.error !== undefined){
 			_error
-			.text(data.error)
+			.html(data.error)
 			.show();
 		}
 
-		alert(data.name);
 	})
 	.fail(function ajaxFailed(e) {
+		console.log('came here');
 		// This failed
 		console.log(e);
 	})

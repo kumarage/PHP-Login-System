@@ -14,35 +14,37 @@
 		//header("Location: https://google.com/");
 		$return = [];
 
-		$email = Filter::String($_POST['email']);
+		$email = Filter::String( $_POST['email'] );
+		$password = $_POST['password'];
 
 		//make sure the user doesn't exist
-		$findUser = $con->prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1");
+		$findUser = $con->prepare("SELECT user_id, password FROM users WHERE email = LOWER(:email) LIMIT 1");
 		$findUser->bindParam(':email',$email, PDO::PARAM_STR);
 		$findUser->execute();
 
-		if($findUser->rowCount()==1){
-			//user exist
-			$return['error'] = "You already have an account";
-			$return['is_logged_in'] = false;
+		if($findUser->rowCount() == 1){
+			//user existtry and sign them in
+			$User = $findUser->fetch(PDO::FETCH_ASSOC);
+			$user_id = (int) $User['user_id'];
+			$hash = (string) $User['password'];
+			
+			if(password_verify($password, $hash)){
+				//user is logged in
+				$return['redirect'] = '/php_login_course/dashboard.php';
+				$_SESSION['user_id'] = $user_id;
+
+			}else {
+				//invalid user
+				$return['error'] = "Invalid User Email or Password";
+				
+			}
+
+
 		} else {
 			//user doesn't exist add them
 
 			//create password through hash
-			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-			$addUser = $con->prepare("INSERT INTO users(email, password) VALUES(LOWER(:email), :password)");
-			$addUser->bindParam(':email',$email, PDO::PARAM_STR);
-			$addUser->bindParam(':password',$password, PDO::PARAM_STR);
-			$addUser->execute();
-
-			$user_id = $con->lastInsertId();
-
-			$_SESSION['user_id'] = (int)$user_id;
-
-			$return['redirect'] = '/php_login_course/dashboard.php?message=welcome';
-
-			$return['is_logged_in'] = true;
+			$return['error'] = "No account, <a href='/register.php'>Create One?</a>";
 		}
 
 		//make sure the user can be added and is added
@@ -51,7 +53,6 @@
 
 		//$return['redirect'] = '/php_login_course/index.php?this-was-a-redirect';
 		//$return['redirect'] = '/php_login_course/dashboard.php';
-		//$return['name'] = 'Pubudu Kumarage';
 		//JSON_PRETTY_PRINT makes the array looks nice for us
 		echo json_encode($return, JSON_PRETTY_PRINT); 
 		exit;

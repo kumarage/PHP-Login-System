@@ -4,7 +4,6 @@
 	define('__CONFIG__',true);
 	//Require the config 
 	require_once "inc/config.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +32,14 @@
 				    <div class="uk-margin">
 				        <label class="uk-form-label" for="form-horizontal-text">Email</label>
 				        <div class="uk-form-controls">
-				            <input class="uk-input" id="form-horizontal-text" type="email" required="required" placeholder="Your Email">
+				            <input class="uk-input" id="form-horizontal-text1" type="email" required="required" placeholder="Your Email">
 				        </div>
 				    </div>
 
 				    <div class="uk-margin">
 				        <label class="uk-form-label" for="form-horizontal-text">Password</label>
 				        <div class="uk-form-controls">
-				            <input class="uk-input" id="form-horizontal-text" type="password" required="required" placeholder="Your Password">
+				            <input class="uk-input" id="form-horizontal-text2" type="password" required="required" placeholder="Your Password">
 				        </div>
 				    </div>
 
