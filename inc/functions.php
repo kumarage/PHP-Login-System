@@ -17,9 +17,9 @@ function ForceDashboard(){
 		if(isset($_SESSION['user_id'])){
 			//the user is allowed here
 			header("Location:/php_login_course/dashboard.php");
+			exit('function exit');
 		}else{
 			//user is not allowed
-			exit;
 		}
 }
 ?>
