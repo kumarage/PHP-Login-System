@@ -17,9 +17,9 @@
 		$email = Filter::String($_POST['email']);
 
 		//make sure the user doesn't exist
-		$user_found = User::Find($email);
+		$user_found = FindUser($con, $email);
 
-		if($user_found){
+		if($findUser){
 			//user exist
 			$return['error'] = "You already have an account";
 			$return['is_logged_in'] = false;

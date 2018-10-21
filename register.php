@@ -4,7 +4,7 @@
 	define('__CONFIG__',true);
 	//Require the config 
 	require_once "inc/config.php";
-	ForceDashboard();
+	Page::ForceDashboard();
 ?>
 
 <!DOCTYPE html>
